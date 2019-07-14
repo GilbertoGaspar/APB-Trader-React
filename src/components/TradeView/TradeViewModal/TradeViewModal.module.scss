@@ -1,0 +1,13 @@
+@import '../../../assets//scss/shared/colors';
+
+.text-black {
+    color: $color-black;
+}
+
+.auto-complete {
+    border: 1px solid rgb(206, 212, 218);
+    border-top: 0;
+    transform: translateY(-1.1rem);
+    color:rgb(73, 80, 87);
+    cursor: pointer;
+}

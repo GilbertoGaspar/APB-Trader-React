@@ -1,0 +1,13 @@
+@import '../../assets//scss/shared/colors';
+
+.TradeView {
+    background-color: #3E454D;
+    color: $color-white;
+    padding: 1rem 5rem;
+
+    &__button {
+        position: absolute;
+        top: .5rem;
+        right: 2rem;
+    }
+}

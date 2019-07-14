@@ -1,0 +1,41 @@
+@import '../../../assets/scss/shared/colors';
+
+.trade-view-cell {
+    position: relative;
+    background-color: $color-grey-dark;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-around;
+    
+
+    &__row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__header {
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+
+    &__image {
+        margin-left: 1rem;
+        width: 5rem;
+        height: 5rem;
+    }
+    &__text {
+
+        &-top-right {
+            position: absolute;
+            top: .5rem;
+            right: .5rem;
+        }
+
+        &-top-left {
+            position: absolute;
+            top: .5rem;
+            left: .5rem;
+        }
+    }
+}
