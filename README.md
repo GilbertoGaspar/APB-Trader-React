@@ -15,9 +15,9 @@ npm install
 ### Firebase Dependency
 ```sh
 - Changes to file "TradeView.js"
-1. Replace "var firebaseConfig = { }" with your firebaseConfig.
-2. Replace "const FIREBASE_TRADE_URL" with your firebase URL. ("https://EXAMPLE.firebaseio.com/trades.json")
-3. Replace "const FIREBASE_TRADE_URL_DELETE" with your firebase URL. ("https://EXAMPLE.firebaseio.com/trades/")
+1. Replace "var firebaseConfig = { }" with your firebaseConfig for authorization.
+2. Replace "const FIREBASE_TRADE_URL" with your firebase realtime database URL. ("https://EXAMPLE.firebaseio.com/trades.json")
+3. Replace "const FIREBASE_TRADE_URL_DELETE" with your firebase realtime database URL. ("https://EXAMPLE.firebaseio.com/trades/")
 
 - Changes to file "TradeViewModal.js"
 - 1. Replace "const FIREBASE_TRADE_URL" with your firebase URL. ("https://EXAMPLE.firebaseio.com/trades.json")
