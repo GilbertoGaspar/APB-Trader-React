@@ -5,7 +5,7 @@
 
 > Trading site made for APB Reloaded the game where users can trade in-game weapons. This project was built using react, react-router, and a firebase backend.
 
-<a href="https://joli-gerard-43431.herokuapp.com/">Demo App</a> (Hosted on Heroku. Please wait for long cold boot times.)
+<a href="https://apb-trader.netlify.com/">Demo App</a>
 
 ## Install
 
