@@ -1,14 +1,15 @@
 @import '../../assets/scss/shared/colors';
 
 .Footer {
-    font-family: 'Lato', sans-serif;
-    display: flex;
-    justify-content: center;
-    background-color: mix($color-primary, $color-secondary) !important;
-    @media screen and (max-width: 576px) {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-      }
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient($color-primary, $color-secondary);
+  text-shadow: 1rem 1rem 3rem #000;
+  @media screen and (max-width: 576px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
 }
