@@ -1,77 +1,79 @@
-@import "../../assets/scss/shared/animations";
-@import "../../assets/scss/shared/colors";
+@import '../../assets/scss/shared/animations';
+@import '../../assets/scss/shared/colors';
 
 .header {
-    height: 95vh;
-    position: relative;
-    background-image: linear-gradient(to bottom right, 
-        rgba($color-primary, .8), rgba($color-secondary, .8)), 
-        url(../../assets//images//hero-apb.jpg);
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-    background-size: cover;
+  height: 95vh;
+  position: relative;
+  background-image: linear-gradient(
+      to bottom right,
+      rgba($color-primary, 0.8),
+      rgba($color-secondary, 0.8)
+    ),
+    url(../../assets//images//hero-apb.jpg);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  background-size: cover;
 
-    text-align: center;
+  text-align: center;
 
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-size: 62.5%;
-    font-family: 'Lato', sans-serif;
-    font-size: 1.6rem;
-    
-    &-text {
-        position: absolute;
-        top: 40%;
-        left: 50%; 
-        transform: translate(-50%, -50%);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.6rem;
 
-        color: #fff;
-        text-transform: uppercase;
+  &-text {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  &-text-main {
+    font-size: 4.8rem;
+    font-weight: 300;
+    letter-spacing: 1.5rem;
+    animation: moveInFromRight 2s ease-out;
+    text-shadow: 1rem 1rem 3rem #000;
+  }
+
+  &-text-sub {
+    margin-bottom: 3rem;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.5rem;
+    animation: moveInFromLeft 2s ease-out;
+    text-shadow: 1rem 1rem 3rem #000;
+  }
+
+  &-button {
+    display: inline-block;
+    padding: 1rem 1rem;
+    color: #777;
+    text-decoration: none;
+    background-color: #fff;
+    border-radius: 5rem;
+    transition: all 0.2s;
+    animation: moveInFromBottom 1s ease-out 0.5s;
+    animation-fill-mode: backwards;
+
+    &:hover {
+      text-decoration: none;
+      color: #777;
+      transform: translateY(-0.3rem);
+      box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.4);
     }
-    
-    &-text-main{
-        font-size: 4.8rem;
-        font-weight: 300;
-        letter-spacing: 1.5rem;
-        animation: moveInFromRight 2s ease-out;
-        text-shadow: 1rem 1rem 3rem #000;
+    &:active {
+      transform: translateY(-0.1rem);
+      box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
     }
+  }
 
-    &-text-sub{
-        margin-bottom: 3rem;
-        font-size: 2rem;
-        font-weight: 300;
-        letter-spacing: .5rem;
-        animation: moveInFromLeft 2s ease-out;
-        text-shadow: 1rem 1rem 3rem #000;
+  @media screen and (max-width: 500px) {
+    &-text-main {
+      letter-spacing: 0.5rem;
     }
-
-    &-button {
-        display: inline-block;
-        padding: 1rem 1rem;
-        color: #777;
-        text-decoration: none;
-        background-color: #fff;
-        border-radius: 5rem;
-        transition: all .2s;
-        animation: moveInFromBottom 1s ease-out .5s;
-        animation-fill-mode: backwards;
-        
-        &:hover {
-            text-decoration: none;
-            color: #777;
-            transform: translateY(-.3rem);
-            box-shadow: .2rem .2rem 1rem rgba(0, 0, 0, 0.40);
-        }
-        &:active {
-            transform: translateY(-.1rem);
-            box-shadow: .2rem .2rem .5rem rgba(0, 0, 0, 0.40);;
-        }
-    }
-
-    @media screen and (max-width: 500px) {
-        &-text-main {
-            letter-spacing: .5rem;
-        }
-      }
+  }
 }
