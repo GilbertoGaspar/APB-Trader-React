@@ -48,7 +48,7 @@ export default function NavBar() {
           className={`${classes['navbar__section']} ${classes['navbar__section--right']}`}
         >
           {user ? (
-            <button>Logout</button>
+            <Button>Logout</Button>
           ) : (
             <div className={classes['navbar__list']}>
               <Button type='special'>Sign up</Button>
