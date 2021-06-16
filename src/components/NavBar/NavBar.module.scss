@@ -1,3 +1,107 @@
-.NavBar {
-    font-size: 1.6rem;
+@import '../../assets/scss/shared/colors';
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+
+  &__section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media screen and (max-width: 640px) {
+      display: none;
+    }
+
+    &--mobile {
+      display: none;
+      @media screen and (max-width: 640px) {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  }
+
+  &__brand {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    color: $color-main-primary;
+    font-size: 2rem;
+    margin-right: 2rem;
+
+    &:hover {
+      text-decoration: none;
+      color: $color-main-primary;
+    }
+  }
+
+  &__list {
+    height: 100%;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+
+    @media screen and (max-width: 640px) {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 1rem;
+    }
+  }
+
+  &__listitem {
+    position: relative;
+    color: $color-main-navbar-text;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2rem;
+    text-decoration: none;
+    &:hover {
+      color: $color-grey-dark;
+      text-decoration: none;
+      &::before {
+        transform: scaleX(1);
+        visibility: visible;
+      }
+    }
+
+    &:active {
+      color: $color-main-primary;
+    }
+
+    &--active {
+      color: $color-grey-dark;
+    }
+    &::before {
+      position: absolute;
+      content: '';
+      background-color: $color-main-primary;
+      width: 100%;
+      height: 0.2rem;
+      bottom: 0;
+      left: 0;
+      transform: scaleX(0);
+      transition: all 0.3s;
+      visibility: hidden;
+    }
+  }
+
+  &__burgermenu {
+    display: none;
+    color: $color-primary;
+    cursor: pointer;
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+
+    &:hover {
+      color: $color-primary-light;
+    }
+    @media screen and (max-width: 640px) {
+      display: initial;
+    }
+  }
 }

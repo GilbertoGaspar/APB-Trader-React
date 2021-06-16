@@ -1,54 +1,58 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+
+import Button from '../Button/Button';
+import MobileNavBar from './MobileNavBar';
+
+import classes from './NavBar.module.scss';
 import UserContext from '../../context/UserContext';
 
 export default function NavBar() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   return (
-    <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
-      <Link className='navbar-brand' to='/trades'>
-        APB-Trader
-      </Link>
-      <button
-        className='navbar-toggler'
-        type='button'
-        data-toggle='collapse'
-        data-target='#navbarSupportedContent'
-        aria-controls='navbarSupportedContent'
-        aria-expanded='false'
-        aria-label='Toggle navigation'
-      >
-        <span className='navbar-toggler-icon'></span>
-      </button>
-
-      <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-        <ul className='navbar-nav mr-auto'>
-          <li className='nav-item'>
-            <Link className='nav-link' to='/'>
-              Home
-            </Link>
-          </li>
-          <li className='nav-item'>
-            <Link className='nav-link' to='/trades'>
-              Trades
-            </Link>
-          </li>
-        </ul>
-
-        {user ? (
-          <button>Logout</button>
-        ) : (
-          <div>
-            <button
-              className='btn btn-outline-success my-2 my-sm-0'
-              data-toggle='modal'
-              data-target='#loginModalCenter'
+    <>
+      <MobileNavBar />
+      <nav className={classes['navbar']}>
+        <div
+          className={`${classes['navbar__section']} ${classes['navbar__section--left']}`}
+        >
+          <Link className={classes['navbar__brand']} to='/trades'>
+            APB-Trader
+          </Link>
+          <div className={classes['navbar__list']}>
+            <NavLink
+              className={classes['navbar__listitem']}
+              activeClassName={classes['navbar__listitem--active']}
+              to='/'
+              exact
             >
-              Login
-            </button>
+              Home
+            </NavLink>
+
+            <NavLink
+              className={classes['navbar__listitem']}
+              activeClassName={classes['navbar__listitem--active']}
+              to='/trades'
+            >
+              Trades
+            </NavLink>
           </div>
-        )}
-      </div>
-    </nav>
+        </div>
+        <div
+          className={`${classes['navbar__section']} ${classes['navbar__section--right']}`}
+        >
+          {user ? (
+            <button>Logout</button>
+          ) : (
+            <div className={classes['navbar__list']}>
+              <Button type='special'>Sign up</Button>
+              <Button>Login</Button>
+            </div>
+          )}
+        </div>
+      </nav>
+    </>
   );
 }
