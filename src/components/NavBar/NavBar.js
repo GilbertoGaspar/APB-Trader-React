@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import Button from '../Button/Button';
@@ -11,6 +11,10 @@ export default function NavBar() {
   const { user, setUser } = useContext(UserContext);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+
+  useEffect(() => {
+    setUser({ name: 'lol' });
+  }, []);
   return (
     <>
       <MobileNavBar />
