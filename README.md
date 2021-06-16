@@ -3,7 +3,7 @@
   <img src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> Trading site made for APB Reloaded the game where users can trade in-game weapons. This project was built using react, react-router, and a firebase backend.
+> Trading site made for APB Reloaded the game where users can trade in-game weapons. This project was built using React, React-Router, and a Firebase backend.
 
 <a href="https://apb-trader.netlify.com/">Demo App</a>
 
