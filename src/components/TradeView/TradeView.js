@@ -15,23 +15,25 @@ import TradeViewCell from './TradeViewCell/TradeViewCell';
 import LoginModal from '../LoginModal/LoginModal';
 
 import classes from './TradeView.module.scss';
+import UserContext from '../../context/UserContext';
 
 var firebaseConfig = {
-  apiKey: '',
-  authDomain: '',
-  databaseURL: '',
-  projectId: '',
-  storageBucket: '',
-  messagingSenderId: '',
-  appId: '',
+  apiKey: 'AIzaSyD5VDCNsHvp2K0pBvpkAlKdW6tCewP3NWI',
+  authDomain: 'apb-trader.firebaseapp.com',
+  databaseURL: 'https://apb-trader.firebaseio.com',
+  projectId: 'apb-trader',
+  storageBucket: 'apb-trader.appspot.com',
+  messagingSenderId: '428964621973',
+  appId: '1:428964621973:web:f99d23893956d533',
 };
 
 firebase.initializeApp(firebaseConfig);
 
-const FIREBASE_TRADE_URL = '';
-const FIREBASE_TRADE_URL_DELETE = '';
+const FIREBASE_TRADE_URL = 'https://apb-trader.firebaseio.com/trades.json';
+const FIREBASE_TRADE_URL_DELETE = 'https://apb-trader.firebaseio.com/trades/';
 
 class TradeView extends Component {
+  static contextType = UserContext;
   state = {
     trades: [],
     searchTerm: '',
@@ -39,6 +41,7 @@ class TradeView extends Component {
   };
 
   componentDidMount() {
+    console.log(this.context);
     this.getLatestTrades();
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
