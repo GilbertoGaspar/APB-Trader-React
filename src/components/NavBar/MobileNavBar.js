@@ -8,7 +8,10 @@ import Button from '../Button/Button';
 import classes from './NavBar.module.scss';
 import UserContext from '../../context/UserContext';
 
-export default function MobileNavBar() {
+export default function MobileNavBar({
+  handleOpenLoginModal,
+  handleOpenRegisterModal,
+}) {
   const { user } = useContext(UserContext);
   const [isMobileNavBarOpen, setIsMobileNavBarOpen] = useState(false);
 
@@ -77,10 +80,10 @@ export default function MobileNavBar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <Button type='special' onClick={() => console.log('hello')}>
+                  <Button variant='special' onClick={handleOpenRegisterModal}>
                     Sign up
                   </Button>
-                  <Button>Login</Button>
+                  <Button onClick={handleOpenLoginModal}>Login</Button>
                 </motion.div>
               )}
             </>

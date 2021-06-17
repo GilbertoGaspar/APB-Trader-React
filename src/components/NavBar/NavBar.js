@@ -1,8 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import Button from '../Button/Button';
 import MobileNavBar from './MobileNavBar';
+import Modal from '../Modal/Modal';
+import RegisterModal from '../RegisterModal/RegisterModal';
 
 import classes from './NavBar.module.scss';
 import UserContext from '../../context/UserContext';
@@ -12,12 +14,26 @@ export default function NavBar() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
 
-  useEffect(() => {
-    setUser({ name: 'lol' });
-  }, []);
+  const handleOpenLoginModal = () => setIsLoginModalOpen(true);
+  const handleOpenRegisterModal = () => setIsRegisterModalOpen(true);
+
   return (
     <>
-      <MobileNavBar />
+      {isLoginModalOpen && (
+        <Modal closeModalCallback={() => setIsLoginModalOpen(false)}>
+          LoginModal
+        </Modal>
+      )}
+      {isRegisterModalOpen && (
+        <RegisterModal
+          closeModalCallback={() => setIsRegisterModalOpen(false)}
+        />
+      )}
+
+      <MobileNavBar
+        handleOpenLoginModal={handleOpenLoginModal}
+        handleOpenRegisterModal={handleOpenRegisterModal}
+      />
       <nav className={classes['navbar']}>
         <div
           className={`${classes['navbar__section']} ${classes['navbar__section--left']}`}
@@ -51,8 +67,13 @@ export default function NavBar() {
             <Button>Logout</Button>
           ) : (
             <div className={classes['navbar__list']}>
-              <Button type='special'>Sign up</Button>
-              <Button>Login</Button>
+              <Button
+                variant='special'
+                onClick={() => setIsRegisterModalOpen(true)}
+              >
+                Sign up
+              </Button>
+              <Button onClick={() => setIsLoginModalOpen(true)}>Login</Button>
             </div>
           )}
         </div>
