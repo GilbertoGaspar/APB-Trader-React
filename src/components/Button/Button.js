@@ -1,14 +1,19 @@
 import React from 'react';
 import classes from './Button.module.scss';
 
-export default function Button({ type = 'normal', onClick, children, styles }) {
+export default function Button({
+  variant = 'normal',
+  onClick,
+  children,
+  ...props
+}) {
   return (
     <button
       className={`${classes['btn']} ${
-        type === 'special' && classes['btn--special']
+        variant === 'special' && classes['btn--special']
       }`}
       onClick={onClick}
-      styles={styles}
+      {...props}
     >
       {children}
     </button>
