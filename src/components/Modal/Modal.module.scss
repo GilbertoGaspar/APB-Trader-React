@@ -1,0 +1,30 @@
+@import '../../assets/scss/shared/colors';
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__content {
+  background-color: $color-white;
+  border-radius: 0.5rem;
+  max-width: 25rem;
+  width: 100%;
+  padding: 1rem 2rem;
+}
+
+.modal__close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: $color-white;
+  cursor: pointer;
+}
