@@ -11,8 +11,9 @@ import UserContext from '../../context/UserContext';
 export default function MobileNavBar({
   handleOpenLoginModal,
   handleOpenRegisterModal,
+  handleOpenLogoutModal,
 }) {
-  const { user } = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const [isMobileNavBarOpen, setIsMobileNavBarOpen] = useState(false);
 
   const handleToggleNavBarOpen = () =>
@@ -67,11 +68,12 @@ export default function MobileNavBar({
               </motion.div>
               {user ? (
                 <motion.div
+                  className={classes['navbar__list']}
                   initial={{ opacity: 0, x: -200 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <Button>Logout</Button>
+                  <Button onClick={handleOpenLogoutModal}>Logout</Button>
                 </motion.div>
               ) : (
                 <motion.div

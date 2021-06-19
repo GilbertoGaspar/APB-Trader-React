@@ -3,36 +3,41 @@ import { Link, NavLink } from 'react-router-dom';
 
 import Button from '../Button/Button';
 import MobileNavBar from './MobileNavBar';
-import Modal from '../Modal/Modal';
 import RegisterModal from '../RegisterModal/RegisterModal';
+import LoginModal from '../LoginModal/LoginModal';
+import LogoutModal from '../LogoutModal/LogoutModal';
 
 import classes from './NavBar.module.scss';
 import UserContext from '../../context/UserContext';
 
 export default function NavBar() {
-  const { user, setUser } = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   const handleOpenLoginModal = () => setIsLoginModalOpen(true);
   const handleOpenRegisterModal = () => setIsRegisterModalOpen(true);
+  const handleOpenLogoutModal = () => setIsLogoutModalOpen(true);
 
   return (
     <>
       {isLoginModalOpen && (
-        <Modal closeModalCallback={() => setIsLoginModalOpen(false)}>
-          LoginModal
-        </Modal>
+        <LoginModal closeModalCallback={() => setIsLoginModalOpen(false)} />
       )}
       {isRegisterModalOpen && (
         <RegisterModal
           closeModalCallback={() => setIsRegisterModalOpen(false)}
         />
       )}
+      {isLogoutModalOpen && (
+        <LogoutModal closeModalCallback={() => setIsLogoutModalOpen(false)} />
+      )}
 
       <MobileNavBar
         handleOpenLoginModal={handleOpenLoginModal}
         handleOpenRegisterModal={handleOpenRegisterModal}
+        handleOpenLogoutModal={handleOpenLogoutModal}
       />
       <nav className={classes['navbar']}>
         <div
@@ -64,7 +69,7 @@ export default function NavBar() {
           className={`${classes['navbar__section']} ${classes['navbar__section--right']}`}
         >
           {user ? (
-            <Button>Logout</Button>
+            <Button onClick={handleOpenLogoutModal}>Logout</Button>
           ) : (
             <div className={classes['navbar__list']}>
               <Button
