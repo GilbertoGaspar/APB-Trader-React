@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FiMail, FiLock } from 'react-icons/fi';
+
+import { firebaseAuth } from '../../firebase/firebase';
+import UserContext from '../../context/UserContext';
 
 import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
@@ -11,6 +14,7 @@ export default function RegisterModal({ closeModalCallback }) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const [, setUser] = useContext(UserContext);
 
   useEffect(() => {
     if (confirmPassword !== '' && password !== confirmPassword) {
@@ -34,15 +38,23 @@ export default function RegisterModal({ closeModalCallback }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
-    setErrorMsg('');
     if (password !== confirmPassword) {
       setErrorMsg('Passwords do not match.');
+    } else {
+      firebaseAuth
+        .createUserWithEmailAndPassword(email, password)
+        .then(({ user }) => {
+          setUser(user);
+          handleCloseModal();
+          // alert('You have been registered!');
+        })
+        .catch((err) => {
+          // alert(JSON.stringify(error));
+          setErrorMsg(err.message);
+        });
     }
-    alert('Registered');
   };
+
   return (
     <Modal closeModalCallback={handleCloseModal}>
       <h2 className={classes['modal__title']}>Register now!</h2>
