@@ -1,36 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import * as $ from 'jquery';
 import moment from 'moment';
 
-// Firebase App (the core Firebase SDK) is always required and
-// must be listed before other Firebase SDKs
-import firebase from 'firebase/app';
-
-import 'firebase/auth';
-import 'firebase/firestore';
+import {
+  FIREBASE_TRADE_URL,
+  FIREBASE_TRADE_URL_DELETE,
+} from '../../firebase/firebase';
 
 import TradeViewModal from './TradeViewModal/TradeViewModal';
 import TradeViewCell from './TradeViewCell/TradeViewCell';
-import LoginModal from '../LoginModal/LoginModal';
 
 import classes from './TradeView.module.scss';
 import UserContext from '../../context/UserContext';
-
-var firebaseConfig = {
-  apiKey: 'AIzaSyD5VDCNsHvp2K0pBvpkAlKdW6tCewP3NWI',
-  authDomain: 'apb-trader.firebaseapp.com',
-  databaseURL: 'https://apb-trader.firebaseio.com',
-  projectId: 'apb-trader',
-  storageBucket: 'apb-trader.appspot.com',
-  messagingSenderId: '428964621973',
-  appId: '1:428964621973:web:f99d23893956d533',
-};
-
-firebase.initializeApp(firebaseConfig);
-
-const FIREBASE_TRADE_URL = 'https://apb-trader.firebaseio.com/trades.json';
-const FIREBASE_TRADE_URL_DELETE = 'https://apb-trader.firebaseio.com/trades/';
 
 class TradeView extends Component {
   static contextType = UserContext;
@@ -41,15 +22,7 @@ class TradeView extends Component {
   };
 
   componentDidMount() {
-    console.log(this.context);
     this.getLatestTrades();
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ currentUser: user });
-      } else {
-        this.setState({ currentUser: '' });
-      }
-    });
   }
 
   //Deletes an array of trades from database
@@ -105,46 +78,8 @@ class TradeView extends Component {
     this.setState({ searchTerm: event.target.value });
   };
 
-  handleRegister = (email, pass) => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, pass)
-      .then((response) => {
-        alert('You have been registered!');
-        $('#loginModalCenter').modal('toggle');
-      })
-      .catch(function (error) {
-        alert(error);
-      });
-  };
-
-  handleLogin = (email, pass) => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, pass)
-      .then((response) => {
-        alert('You have logged in!');
-        $('#loginModalCenter').modal('toggle');
-      })
-      .catch(function (error) {
-        alert(error);
-      });
-  };
-
-  handleLogout = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        alert('You have logged out!');
-        $('#loginModalCenter').modal('toggle');
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  };
-
   render() {
+    const [user] = this.context;
     let tradeButton = <h6>Please login/register to create a trade!</h6>;
     let trades = <h6>No current trades!</h6>;
     //If trades data is not null create trades display section.
@@ -202,7 +137,7 @@ class TradeView extends Component {
     }
 
     //Display create trade button if user is logged in.
-    if (this.state.currentUser) {
+    if (user) {
       tradeButton = (
         <button
           type='button'
@@ -235,14 +170,8 @@ class TradeView extends Component {
           onChange={(event) => this.handleSearchTermChanger(event)}
         />
         {tradeButton}
-        <TradeViewModal user={this.state.currentUser.uid} />
-        <LoginModal
-          register={this.handleRegister}
-          login={this.handleLogin}
-          logout={this.handleLogout}
-          currentUser={this.state.currentUser}
-        />
-        <h6>{this.state.currentUser.email}</h6>
+        <TradeViewModal user={user && user.uid} />
+        <h6>{user && user.email}</h6>
       </div>
     );
   }
