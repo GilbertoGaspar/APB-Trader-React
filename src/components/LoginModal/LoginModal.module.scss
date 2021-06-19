@@ -1,5 +1,36 @@
 @import '../../assets/scss/shared/colors';
 
-.text-black {
-    color: $color-black;
+.modal__title {
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  color: $color-main-primary;
+}
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modal__inputgroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.modal__input {
+  width: 100%;
+  padding: 0.3rem;
+}
+
+.modal__bottom {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+
+  @media screen and (max-width: 320px) {
+    flex-direction: column;
+  }
 }
