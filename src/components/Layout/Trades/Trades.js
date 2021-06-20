@@ -12,7 +12,7 @@ export default function Trades() {
         <NavBar />
         <div className='container'>
           <div className='row justify-content-center'>
-            <div className='col-sm col-lg-8 col-xl-8 text-center'>
+            <div>
               <TradeView />
             </div>
           </div>
