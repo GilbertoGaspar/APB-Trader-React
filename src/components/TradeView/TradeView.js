@@ -19,11 +19,17 @@ class TradeView extends Component {
     trades: [],
     searchTerm: '',
     currentUser: '',
+    isTradeModalOpen: false,
   };
 
   componentDidMount() {
     this.getLatestTrades();
   }
+
+  handleToggleTradeModalOpen = () => {
+    this.setState({ isTradeModalOpen: !this.state.isTradeModalOpen });
+    this.getLatestTrades();
+  };
 
   //Deletes an array of trades from database
   deleteOldTradesFromDataBase = (trades) => {
@@ -142,37 +148,43 @@ class TradeView extends Component {
         <button
           type='button'
           className='btn btn-block btn-secondary'
-          data-toggle='modal'
-          data-target='#tradeModalCenter'
+          onClick={this.handleToggleTradeModalOpen}
         >
           Create Trade
         </button>
       );
     }
     return (
-      <div className={classes['TradeView']}>
-        <button
-          className={`btn btn-secondary ${classes['TradeView__button']}`}
-          id='btn-refresh'
-          type='button'
-          onClick={this.getLatestTrades}
-        >
-          Refresh
-        </button>
-        <h3>Current Trades</h3>
-        {trades}
-        <input
-          type='text'
-          className='form-control mb-2'
-          placeholder='Weapon Search'
-          aria-label='Weapon Search'
-          aria-describedby='basic-addon1'
-          onChange={(event) => this.handleSearchTermChanger(event)}
-        />
-        {tradeButton}
-        <TradeViewModal user={user && user.uid} />
-        <h6>{user && user.email}</h6>
-      </div>
+      <>
+        {this.state.isTradeModalOpen && (
+          <TradeViewModal
+            closeModalCallback={this.handleToggleTradeModalOpen}
+            user={user && user.uid}
+          />
+        )}
+        <div className={classes['TradeView']}>
+          <button
+            className={`btn btn-secondary ${classes['TradeView__button']}`}
+            id='btn-refresh'
+            type='button'
+            onClick={this.getLatestTrades}
+          >
+            Refresh
+          </button>
+          <h3>Current Trades</h3>
+          {trades}
+          <input
+            type='text'
+            className='form-control mb-2'
+            placeholder='Weapon Search'
+            aria-label='Weapon Search'
+            aria-describedby='basic-addon1'
+            onChange={(event) => this.handleSearchTermChanger(event)}
+          />
+          {tradeButton}
+          <h6>{user && user.email}</h6>
+        </div>
+      </>
     );
   }
 }
