@@ -1,13 +1,63 @@
-@import '../../../assets//scss/shared/colors';
+@import '../../../assets/scss/shared/colors';
 
-.text-black {
-    color: $color-black;
+.modal__title {
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  color: $color-main-primary;
+}
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modal__inputgroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  &--autocomplete {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.modal__input {
+  width: 100%;
+  padding: 0.3rem;
+
+  &--select {
+    &:invalid {
+      color: grey;
+    }
+  }
+}
+
+.modal__bottom {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+
+  @media screen and (max-width: 320px) {
+    flex-direction: column;
+  }
 }
 
 .auto-complete {
-    border: 1px solid rgb(206, 212, 218);
-    border-top: 0;
-    transform: translateY(-1.1rem);
-    color:rgb(73, 80, 87);
-    cursor: pointer;
+  position: absolute;
+  padding: 0.2rem;
+  bottom: 0;
+  z-index: 15;
+  width: 100%;
+  border: 1px solid $color-black;
+  border-top: 0;
+  background-color: $color-white;
+  color: $color-black;
+  transform: translateY(100%);
+  cursor: pointer;
 }
