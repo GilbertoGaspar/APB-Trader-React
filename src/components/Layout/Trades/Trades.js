@@ -10,13 +10,7 @@ export default function Trades() {
     <React.Fragment>
       <UserProvider>
         <NavBar />
-        <div className='container'>
-          <div className='row justify-content-center'>
-            <div>
-              <TradeView />
-            </div>
-          </div>
-        </div>
+        <TradeView />
       </UserProvider>
     </React.Fragment>
   );
