@@ -29,6 +29,7 @@
 .modal__input {
   width: 100%;
   padding: 0.3rem;
+  border: 1px solid $color-grey;
 
   &--select {
     &:invalid {
