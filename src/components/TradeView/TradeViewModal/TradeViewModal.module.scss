@@ -35,6 +35,10 @@
       color: grey;
     }
   }
+
+  &:not(:focus) + .auto-complete:not(:hover) {
+    display: none;
+  }
 }
 
 .modal__bottom {
