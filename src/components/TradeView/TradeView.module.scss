@@ -1,13 +1,71 @@
 @import '../../assets//scss/shared/colors';
 
-.TradeView {
-    background-color: #3E454D;
-    color: $color-white;
-    padding: 1rem 5rem;
+.tradeview {
+  &__upper {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    justify-content: center;
+    align-content: center;
+    gap: 2rem;
+    grid-template-areas: 'search title buttons';
+    margin-bottom: 2rem;
 
-    &__button {
-        position: absolute;
-        top: .5rem;
-        right: 2rem;
+    @media screen and (max-width: 710px) {
+      grid-template-areas:
+        'title'
+        'buttons'
+        'search';
+      grid-template-columns: 1fr;
     }
+    justify-content: center;
+    align-content: center;
+  }
+
+  &__lower {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__title {
+    grid-area: title;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    color: $color-main-title;
+    font-size: 3.5rem;
+    text-align: center;
+  }
+  &__center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__left {
+    grid-area: search;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__right {
+    grid-area: buttons;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  &__input {
+    padding: 0.5rem 1rem;
+    max-width: 25rem;
+    min-width: 12rem;
+    width: 100%;
+    border: 1px solid $color-grey;
+    text-align: center;
+    border-radius: 0.3rem;
+  }
 }

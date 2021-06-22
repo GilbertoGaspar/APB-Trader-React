@@ -12,6 +12,7 @@ import TradeViewCell from './TradeViewCell/TradeViewCell';
 
 import classes from './TradeView.module.scss';
 import UserContext from '../../context/UserContext';
+import Button from '../Button/Button';
 
 class TradeView extends Component {
   static contextType = UserContext;
@@ -43,7 +44,7 @@ class TradeView extends Component {
     });
   };
 
-  //Deletes old(expired) trades and fetch new trades.
+  //Deletes old(expired) trades and fetches new trades.
   getLatestTrades = () => {
     axios
       .get(FIREBASE_TRADE_URL)
@@ -86,7 +87,6 @@ class TradeView extends Component {
 
   render() {
     const [user] = this.context;
-    let tradeButton = <h6>Please login/register to create a trade!</h6>;
     let trades = <h6>No current trades!</h6>;
     //If trades data is not null create trades display section.
     if (this.state.trades !== null) {
@@ -102,7 +102,7 @@ class TradeView extends Component {
             unixTimeExpires,
             weapon,
           } = trade[1];
-          let time = moment().to(unixTimeExpires, true);
+          let time = moment(unixTimeExpires).format('lll');
           return (
             <TradeViewCell
               key={trade[0]}
@@ -124,8 +124,15 @@ class TradeView extends Component {
         });
         //Create and display TradeViewCell per trade.
         trades = trades.map((trade) => {
-          const { character, hudImage, price, server, time, unixTime, weapon } =
-            trade[1];
+          const {
+            character,
+            hudImage,
+            price,
+            server,
+            unixTimeExpires,
+            weapon,
+          } = trade[1];
+          let time = moment(unixTimeExpires).format('lll');
           return (
             <TradeViewCell
               key={trade[0]}
@@ -134,7 +141,6 @@ class TradeView extends Component {
               price={price}
               server={server}
               time={time}
-              unixTime={unixTime}
               weapon={weapon}
             />
           );
@@ -142,18 +148,6 @@ class TradeView extends Component {
       }
     }
 
-    //Display create trade button if user is logged in.
-    if (user) {
-      tradeButton = (
-        <button
-          type='button'
-          className='btn btn-block btn-secondary'
-          onClick={this.handleToggleTradeModalOpen}
-        >
-          Create Trade
-        </button>
-      );
-    }
     return (
       <>
         {this.state.isTradeModalOpen && (
@@ -162,27 +156,35 @@ class TradeView extends Component {
             user={user && user.uid}
           />
         )}
-        <div className={classes['TradeView']}>
-          <button
-            className={`btn btn-secondary ${classes['TradeView__button']}`}
-            id='btn-refresh'
-            type='button'
-            onClick={this.getLatestTrades}
-          >
-            Refresh
-          </button>
-          <h3>Current Trades</h3>
-          {trades}
-          <input
-            type='text'
-            className='form-control mb-2'
-            placeholder='Weapon Search'
-            aria-label='Weapon Search'
-            aria-describedby='basic-addon1'
-            onChange={(event) => this.handleSearchTermChanger(event)}
-          />
-          {tradeButton}
-          <h6>{user && user.email}</h6>
+        <div className={classes['tradeview']}>
+          <div className={classes['tradeview__upper']}>
+            <div className={classes['tradeview__left']}>
+              <input
+                className={classes['tradeview__input']}
+                type='text'
+                placeholder={`Weapon Name Search`}
+                aria-label='Weapon Name Search'
+                onChange={(event) => this.handleSearchTermChanger(event)}
+              />
+            </div>
+            <h1 className={classes['tradeview__title']}>Current Trades</h1>
+            <div className={classes['tradeview__right']}>
+              {user ? (
+                <>
+                  <Button onClick={this.getLatestTrades}>Refresh</Button>
+                  <Button
+                    variant='special'
+                    onClick={this.handleToggleTradeModalOpen}
+                  >
+                    Create
+                  </Button>
+                </>
+              ) : (
+                <Button onClick={this.getLatestTrades}>Refresh</Button>
+              )}
+            </div>
+          </div>
+          <div className={classes['tradeview__lower']}>{trades}</div>
         </div>
       </>
     );
