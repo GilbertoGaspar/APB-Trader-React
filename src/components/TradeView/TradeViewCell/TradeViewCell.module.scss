@@ -28,12 +28,19 @@
     font-weight: bold;
     text-align: center;
     color: $color-main-grey-title;
+
+    @media  screen and (max-width: 500px) {
+        font-size: 1.5rem
+    }
   }
 
   &__subtitle {
     font-family: 'Lato', sans-serif;
     color: $color-main-grey-sub;
     text-align: center;
+    @media  screen and (max-width: 500px) {
+      font-size: 1rem
+  }
   }
 
   &__lower {
