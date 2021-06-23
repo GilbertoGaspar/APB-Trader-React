@@ -43,7 +43,7 @@ export default function NavBar() {
         <div
           className={`${classes['navbar__section']} ${classes['navbar__section--left']}`}
         >
-          <Link className={classes['navbar__brand']} to='/trades'>
+          <Link className={classes['navbar__brand']} to='/'>
             APB-Trader
           </Link>
           <div className={classes['navbar__list']}>

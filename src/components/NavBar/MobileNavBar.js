@@ -38,7 +38,7 @@ export default function MobileNavBar({
         <div
           className={`${classes['navbar__section']} ${classes['navbar__section--mobile']}`}
         >
-          <Link className={classes['navbar__brand']} to='/trades'>
+          <Link className={classes['navbar__brand']} to='/'>
             APB-Trader
           </Link>
           {isMobileNavBarOpen ? (
