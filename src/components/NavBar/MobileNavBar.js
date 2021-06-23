@@ -73,6 +73,7 @@ export default function MobileNavBar({
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
                 >
+                <div className={classes['navbar__email']}>{user.email}</div>
                   <Button onClick={handleOpenLogoutModal}>Logout</Button>
                 </motion.div>
               ) : (

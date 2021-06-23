@@ -69,7 +69,10 @@ export default function NavBar() {
           className={`${classes['navbar__section']} ${classes['navbar__section--right']}`}
         >
           {user ? (
+            <>
+            <div className={classes['navbar__email']}>{user.email}</div>
             <Button onClick={handleOpenLogoutModal}>Logout</Button>
+            </>
           ) : (
             <div className={classes['navbar__list']}>
               <Button
