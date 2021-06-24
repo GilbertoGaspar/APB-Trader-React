@@ -179,7 +179,9 @@ export default class TradeViewModal extends Component {
             className={`${classes['modal__inputgroup']} ${classes['modal__inputgroup--autocomplete']}`}
             htmlFor='weapon'
           >
+            Weapon Name
             <input
+              id='weapon'
               className={classes['modal__input']}
               name='weapon'
               required
@@ -190,7 +192,9 @@ export default class TradeViewModal extends Component {
             {this.state.searchAutoCompleteResults}
           </label>
           <label className={classes['modal__inputgroup']} htmlFor='price'>
+            Price
             <input
+              id='price'
               className={classes['modal__input']}
               name='price'
               type='number'
@@ -203,7 +207,9 @@ export default class TradeViewModal extends Component {
             />
           </label>
           <label className={classes['modal__inputgroup']} htmlFor='time'>
+            Time
             <select
+              id='time'
               className={`${classes['modal__input']} ${classes['modal__input--select']}`}
               onChange={(event) =>
                 this.handleUpdateSubmitData('time', event.target.value)
@@ -219,7 +225,9 @@ export default class TradeViewModal extends Component {
             </select>
           </label>
           <label className={classes['modal__inputgroup']} htmlFor='character'>
+            Character Name
             <input
+              id='character'
               className={classes['modal__input']}
               name='character'
               required
@@ -231,7 +239,9 @@ export default class TradeViewModal extends Component {
             />
           </label>
           <label className={classes['modal__inputgroup']} htmlFor='server'>
+            Server Name
             <select
+              id='server'
               className={`${classes['modal__input']} ${classes['modal__input--select']}`}
               onChange={(event) =>
                 this.handleUpdateSubmitData('server', event.target.value)

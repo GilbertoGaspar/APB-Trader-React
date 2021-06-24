@@ -14,15 +14,16 @@
 
 .modal__inputgroup {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: 1rem;
+  align-items: flex-start;
+
   &--autocomplete {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
   }
 }
 
