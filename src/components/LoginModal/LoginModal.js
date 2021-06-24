@@ -51,6 +51,7 @@ export default function LoginModal({ closeModalCallback }) {
         <label className={classes['modal__inputgroup']} htmlFor='email'>
           <FiMail size='2rem' />
           <input
+            id='email'
             className={classes['modal__input']}
             name='email'
             type='email'
@@ -63,6 +64,7 @@ export default function LoginModal({ closeModalCallback }) {
         <label className={classes['modal__inputgroup']} htmlFor='password'>
           <FiLock size='2rem' />
           <input
+            id='password'
             className={classes['modal__input']}
             name='password'
             type='password'
