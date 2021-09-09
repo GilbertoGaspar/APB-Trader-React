@@ -21,6 +21,8 @@
     background-color: $color-main-grey-darker;
     border-radius: 100%;
     padding: 1.5rem;
+    min-width: 7rem;
+    min-height: 7rem;
   }
 
   &__title {
@@ -29,8 +31,8 @@
     text-align: center;
     color: $color-main-grey-title;
 
-    @media  screen and (max-width: 500px) {
-        font-size: 1.5rem
+    @media screen and (max-width: 500px) {
+      font-size: 1.5rem;
     }
   }
 
@@ -38,9 +40,9 @@
     font-family: 'Lato', sans-serif;
     color: $color-main-grey-sub;
     text-align: center;
-    @media  screen and (max-width: 500px) {
-      font-size: 1rem
-  }
+    @media screen and (max-width: 500px) {
+      font-size: 1rem;
+    }
   }
 
   &__lower {
