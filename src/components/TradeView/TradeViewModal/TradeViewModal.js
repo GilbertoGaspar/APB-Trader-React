@@ -129,27 +129,27 @@ export default class TradeViewModal extends Component {
       if (this.state.searchTerm.length >= 2) {
         axios
           .get(
-            `https://apbdb.com/beacon/search?q=${this.state.searchTerm}&limit=15&cat=Weapon`
+            `https://api.apbdb.com/beacon/search?query=${this.state.searchTerm}&limit=15&cat=Weapon`
           )
           .then((response) => {
-            let tradeableWeapons = response.data.filter((data) => {
-              if (data.tradeable === 'Yes') {
+
+            let tradeableWeapons = response.data.items.filter((data) => {
                 return true;
-              }
-              return false;
             });
+
+            console.log(tradeableWeapons);
 
             tradeableWeapons = tradeableWeapons.map((weapon) => {
               return (
                 <div
-                  key={weapon.sdisplayname}
-                  className={classes['auto-complete']}
+                  key={weapon.sDisplayName}
+                  className={classes['auto-complete-item']}
                   onClick={() => {
-                    this.handleUpdateSubmitData('weapon', weapon.sdisplayname);
-                    this.handleUpdateSubmitData('hudImage', weapon.hudimage);
+                    this.handleUpdateSubmitData('weapon', weapon.sDisplayName);
+                    this.handleUpdateSubmitData('hudImage', 'https://cdn.apbdb.com/img/apbmenus_art_weapons/icon_assaultrifle_ntec.webp');
                   }}
                 >
-                  {weapon.sdisplayname}
+                  {weapon.sDisplayName}
                 </div>
               );
             });
@@ -161,7 +161,11 @@ export default class TradeViewModal extends Component {
           .catch((error) => {
             console.log(error);
           });
-      }
+      } else {
+        this.setState({
+              searchAutoCompleteResults: [],
+            });
+          }
     });
   };
 
@@ -189,7 +193,11 @@ export default class TradeViewModal extends Component {
               onChange={this.handleAutoCompleteChange}
               placeholder={`Weapon Name Ex: OCA Nano 'Connoisseur'`}
             />
+            <div style={{ position: 'relative', width: '100%' }}>
+            <div className={classes['auto-complete']}>
             {this.state.searchAutoCompleteResults}
+            </div>
+            </div>
           </label>
           <label className={classes['modal__inputgroup']} htmlFor='price'>
             Price

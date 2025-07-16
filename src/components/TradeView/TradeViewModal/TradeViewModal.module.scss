@@ -56,14 +56,19 @@
 
 .auto-complete {
   position: absolute;
-  padding: 0.2rem;
-  bottom: 0;
+  flex-wrap: nowrap;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  top: 100%;
   z-index: 15;
+}
+
+.auto-complete-item {
+  padding: 0.2rem;
   width: 100%;
   border: 1px solid $color-black;
-  border-top: 0;
   background-color: $color-white;
   color: $color-black;
-  transform: translateY(100%);
   cursor: pointer;
 }

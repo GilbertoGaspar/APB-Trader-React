@@ -8,7 +8,7 @@
 
 > Trading site made for "APB Reloaded" the game where users can trade in-game weapons. This project was built using React, React-Router, and a Firebase backend.
 
-<a  href="https://apb-trader.netlify.com/">Demo App</a>
+<a  href="https://apb-trader.netlify.app/">Demo App</a>
 
 ## Demo Account Information (testing)
 
